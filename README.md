@@ -15,6 +15,7 @@ This repository contains Task 1 of the course project, covering the first three 
 ## Table of Contents
 
 - [Project Overview](#project-overview)
+- [Repository Structure](#repository-structure)
 
 
 ---
@@ -36,5 +37,31 @@ This project develops a compact machine learning system for ECG heartbeat classi
 - **Latency:** Real-time classification without cloud communication
 - **Reliability:** Works without internet connectivity
 - **Power efficiency:** Low energy consumption for continuous monitoring
+
+---
+
+## Repository Structure
+
+```
+ECG_Project/
+|
+|-- README.md                          # This file
+|-- requirements.txt                   # Python dependencies
+|
+|-- notebooks/
+|   └── EDA.ipynb                      # Exploratory Data Analysis
+|
+|-- src/
+|   ├── prepare_data.py                # Main data preparation script
+|   └── dataset.py                     # PyTorch Dataset class
+|
+|-- configs/                           # Configuration files
+|
+|-- results/                           # Generated statistics and outputs
+|
+|-- data/                              # Data directory (not in git)
+|   ├── raw/                           # Downloaded WFDB files
+|   └── processed/                     # Processed NumPy arrays
+```
 
 ---
