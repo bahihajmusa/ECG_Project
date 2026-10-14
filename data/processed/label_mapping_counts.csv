@@ -1,0 +1,22 @@
+final_class,symbol,description,n_annotations,n_in_dataset,reason
+N,N,Normal beat,74546,74505,used
+N,L,Left bundle branch block beat,8075,8071,used
+N,R,Right bundle branch block beat,7259,7255,used
+N,j,Nodal (junctional) escape beat,229,229,used
+N,e,Atrial escape beat,16,16,used
+S,A,Atrial premature beat,2546,2546,used
+S,a,Aberrated atrial premature beat,150,150,used
+S,J,Nodal (junctional) premature beat,83,83,used
+S,S,Supraventricular premature beat,2,2,used
+V,V,Premature ventricular contraction,6903,6902,used
+V,E,Ventricular escape beat,106,106,used
+F,F,Fusion of ventricular and normal beat,803,802,used
+EXCLUDED,+,Rhythm change,1173,0,not a heartbeat (rhythm / quality / wave annotation)
+EXCLUDED,~,Change in signal quality,573,0,not a heartbeat (rhythm / quality / wave annotation)
+EXCLUDED,!,Ventricular flutter wave,472,0,not a heartbeat (rhythm / quality / wave annotation)
+EXCLUDED,"""",Comment annotation,437,0,not a heartbeat (rhythm / quality / wave annotation)
+EXCLUDED,x,Non-conducted P-wave,193,0,not a heartbeat (rhythm / quality / wave annotation)
+EXCLUDED,|,Isolated QRS-like artifact,131,0,not a heartbeat (rhythm / quality / wave annotation)
+EXCLUDED,Q,Unclassifiable beat,15,0,"paced / unclassifiable beat (not one of N,S,V,F)"
+EXCLUDED,[,Start of ventricular flutter/fibrillation,6,0,not a heartbeat (rhythm / quality / wave annotation)
+EXCLUDED,],End of ventricular flutter/fibrillation,6,0,not a heartbeat (rhythm / quality / wave annotation)
