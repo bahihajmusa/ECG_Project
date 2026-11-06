@@ -1,0 +1,137 @@
+{
+  "synthesis_passed": true,
+  "problems": [],
+  "generated_files": {
+    "cnn.c": true,
+    "cnn.h": true,
+    "main.c": true,
+    "weights.h": true,
+    "sampledata.h": true,
+    "sampleoutput.h": true
+  },
+  "ops_total": 1420688,
+  "macc_total": 1384448,
+  "layers": [
+    {
+      "layer": 0,
+      "ops": 34560,
+      "macc": 28800
+    },
+    {
+      "layer": 1,
+      "ops": 472320,
+      "macc": 460800
+    },
+    {
+      "layer": 2,
+      "ops": 469440,
+      "macc": 460800
+    },
+    {
+      "layer": 3,
+      "ops": 212400,
+      "macc": 207360
+    },
+    {
+      "layer": 4,
+      "ops": 206272,
+      "macc": 202752
+    },
+    {
+      "layer": 5,
+      "ops": 24288,
+      "macc": 22528
+    },
+    {
+      "layer": 6,
+      "ops": 1408,
+      "macc": 1408
+    }
+  ],
+  "weight_used": 25040,
+  "weight_total": 2396160,
+  "bias_used": 228,
+  "bias_total": 8192,
+  "model": {
+    "input_shape": [
+      1,
+      360
+    ],
+    "output": 4,
+    "parameters_deployed": 25268,
+    "weight_bytes_int8": 25268,
+    "estimated_peak_activation_bytes_int8": 11520
+  },
+  "quantization_tensors": [
+    {
+      "tensor": "conv1.op.weight",
+      "max": 9.119819,
+      "bits": 8
+    },
+    {
+      "tensor": "conv1.op.bias",
+      "max": 0.9841525,
+      "bits": 8
+    },
+    {
+      "tensor": "conv2.op.weight",
+      "max": 0.62239385,
+      "bits": 8
+    },
+    {
+      "tensor": "conv2.op.bias",
+      "max": 0.15675075,
+      "bits": 8
+    },
+    {
+      "tensor": "conv3.op.weight",
+      "max": 0.42536643,
+      "bits": 8
+    },
+    {
+      "tensor": "conv3.op.bias",
+      "max": 0.36887294,
+      "bits": 8
+    },
+    {
+      "tensor": "conv4.op.weight",
+      "max": 0.52745956,
+      "bits": 8
+    },
+    {
+      "tensor": "conv4.op.bias",
+      "max": 0.430614,
+      "bits": 8
+    },
+    {
+      "tensor": "conv5.op.weight",
+      "max": 0.39892262,
+      "bits": 8
+    },
+    {
+      "tensor": "conv5.op.bias",
+      "max": 0.21463488,
+      "bits": 8
+    },
+    {
+      "tensor": "conv6.op.weight",
+      "max": 0.81076753,
+      "bits": 8
+    },
+    {
+      "tensor": "conv6.op.bias",
+      "max": 0.84793293,
+      "bits": 8
+    },
+    {
+      "tensor": "fc.op.weight",
+      "max": 0.48629284,
+      "bits": 8
+    },
+    {
+      "tensor": "fc.op.bias",
+      "max": 0.015101922,
+      "bits": 8
+    }
+  ]
+}

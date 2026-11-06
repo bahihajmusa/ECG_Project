@@ -1,0 +1,36 @@
+# Deep-learning baseline: a very small CNN (about 3k parameters), same training recipe.
+seed: 42
+device: auto
+
+paths:
+  processed_dir: ../data/processed
+  models_dir: ../models
+  results_dir: ../results
+
+model:
+  arch: tiny_cnn
+  width_mult: 1.0
+  dropout: 0.0
+  num_classes: 4
+  input_length: 360
+
+training:
+  optimizer: adam
+  lr: 0.001
+  weight_decay: 0.0001
+  lr_schedule: cosine
+  batch_size: 128
+  epochs: 40
+  grad_clip: 1.0
+  loss: cross_entropy
+  label_smoothing: 0.0
+  imbalance: class_weights
+  class_weight_power: 0.5
+  augment: true
+  num_workers: 0
+  early_stopping:
+    patience: 10
+    min_epochs: 10
+
+qat:
+  enabled: false

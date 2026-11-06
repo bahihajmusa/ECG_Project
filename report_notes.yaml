@@ -1,0 +1,66 @@
+# Text and settings for make_report.py. Everything else in the report is generated from results/, max78002/ and the notebook.
+title: "Edge-Ready ECG Classification using CRISP-DM"
+authors: "Hajmusa, B., Runsten, N., & Waxell, P."
+course: "Advanced Data Mining, 7.5 cr"
+date: "04/11 2026"
+
+summary: |
+  This report covers the whole project, from the problem (section 1) and the data (sections 2 and 3) to modelling, evaluation and deployment (sections 4 to 6).
+  EdgeECGNet (25,268 parameters, 25 KB in INT8) was evaluated on the 22 DS2 records, which were never used for training or tuning.
+  The model fits the MAX78002 (synthesis passed), loses little macro-F1 from FP32 to INT8 and degrades gradually under noise,
+  but it does not reach the macro-F1 and minority-class targets. The errors of classes S and F are concentrated in a few records
+  and come from missing timing information (no RR interval), not from the network size.
+
+  Two INT8 models are reported, and they must not be mixed up: the PyTorch INT8 emulation is the main, pre-planned model (all noise and error analysis refer to it),
+  and the ai8x 8-bit model is the one that was actually synthesized for the MAX78002. They come from separate training runs. Neither was chosen using DS2.
+
+  Honest reading of the numbers: a tiny 2,900-parameter CNN reaches a similar or higher macro-F1 than the edge model, so the larger model
+  is justified by the INT8 and deployment analysis, not by accuracy.
+
+# Targets of the success criteria (section 1.4). Used both in section 1.4 and in the review 5.6. "partial" = lower limit for "Partially achieved".
+targets:
+  macro_f1: {target: 0.60, partial: 0.45}
+  baseline_margin: {target: 0.05, partial: 0.0}
+  recall_V: {target: 0.80, partial: 0.60}
+  recall_S: {target: 0.50, partial: 0.25}
+  recall_F: {target: 0.50, partial: 0.25}
+  noise_drop_0db: {target: 0.05, partial: 0.10}
+  int8_drop: {target: 0.03}
+  size_mb: {target: 2.0}
+
+# Values that are written into report_task1.md as {{name}}.
+vars:
+    software_task2: "Task 2 (modelling, evaluation, report) used Python 3.12.3, PyTorch 2.14.1 (run on CPU), NumPy 2.5.4, SciPy 1.18.1, pandas 3.1.0 and WFDB 4.3.1. For the MAX78002 toolchain a separate environment was used, with Python 3.11, PyTorch 2.3.1 (CPU) and NumPy 1.26.4, together 				with Analog Devices' ai8x-training and ai8x-synthesis."
+
+run_history:
+  - {run: D, change: "dropout 0.1, weight decay 0, class-weight power 0.5", result: "val macro-F1 0.4560 FP32 / 0.4551 INT8", decision: "frozen as best_config.yaml"}
+  - {run: E, change: "dropout 0.3, weight decay 1e-4", result: "no validation gain (see logs)", decision: "rejected"}
+
+# Shown below the ai8x table in section 6.
+ai8x_comparison:
+  - "**Comparison of the two INT8 models (DS2).** The deployed ai8x model reaches macro-F1 0.4919 and accuracy 0.8758; the PyTorch INT8 emulation reaches 0.4019 and 0.8967. The ai8x model is better on V (F1 0.856 versus 0.587) and S (0.179 versus 0.066) and slightly worse on N and accuracy: it finds more minority beats and pays with more false alarms (for example 1,635 N beats labelled F and 1,815 labelled S). F is still almost never found (recall 0.008)."
+  - "It is not only a DS2 effect: on the validation records the ai8x model also scored higher (macro-F1 0.4933 versus 0.4551 for the emulation). The ai8x run is a separate training run (from scratch, checkpoint chosen on validation accuracy), not a more exact copy of the emulated model, and each model comes from a single run, so part of the difference may be run-to-run variation. We do not conclude that the toolchain or the chip is better."
+  - "The ai8x model scores about the same as the 2,900-parameter tiny CNN (0.4919 versus 0.4970), which suggests that the training recipe and the model selection matter more than the network size. The conclusion about S and F stays: they need timing information (RR interval) that a single 1-second window does not contain."
+  - "The emulation was kept as the main model because it was planned before DS2 was opened; the ai8x result was not used to change any decision."
+
+error_discussion: |
+  The three records with the most errors (232, 213, 111) hold 55 % of all errors. Bundle-branch-block beats (L and R) are often predicted as V.
+
+limitations:
+  - "No board measurements: latency, energy and RAM use are not measured."
+  - "No RR-interval feature: S and F beats are distinguished mainly by timing, which one 1-second window does not contain."
+  - "Each INT8 model comes from one training run (one seed); the difference between the emulated and the ai8x model may partly be run-to-run variation."
+  - "Very few F beats in the training records (15 in validation)."
+
+# Appendix A: [section, what changed, why]
+changes:
+  - ["1.2", "Input described exactly (360 samples of lead MLII, filtered, normalised)", "The assignment asks for the exact input of the model"]
+  - ["1.4", "Success criteria rewritten with numbers and one criterion per area", "The first submission had only qualitative criteria; the assignment requires measurable ones and section 5.6 judges them"]
+  - ["1.5, 2.1, 3.1", "Records and subjects stated correctly: 48 records, 44 used (paced records 102, 104, 107, 217 excluded)", "The report listed 44 records without saying why 4 of the 48 were left out"]
+  - ["2.2, 3.6, 3.8", "Beat counts explained (100,718 labelled, 100,667 in the final dataset); J corrected to j in class N", "Two tables gave different totals; 51 beats were lost because their window leaves the recording; J belongs to class S"]
+  - ["2.3 to 2.5", "More figures from the EDA notebook; leakage experiment with numbers and a figure; record 116 and noise facts added", "Evidence for statements already made"]
+  - ["3.4", "Pipeline order corrected; note about the zero-phase filter", "Noise is added before filtering; a real device cannot use a zero-phase filter"]
+  - ["3.6", "Final class weights are softened (square root); balanced sampler tested and rejected with a result", "Decided in the model selection of section 4.4, on validation data only"]
+  - ["3.7", "Full list of augmentations (gain, shift, baseline wander, noise)", "Only two of the four were listed"]
+  - ["3.9", "Software of the Task 2 environment added", "The versions must match what was actually run"]
+  - ["References, typos", "Two PhysioNet references added; typos fixed (1DD, Supraventricular)", "The noise database and PhysioNet were used but not cited"]

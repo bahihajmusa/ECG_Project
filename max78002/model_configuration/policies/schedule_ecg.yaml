@@ -1,0 +1,14 @@
+---
+# Learning-rate schedule for ai8x-training (used with --compress)
+lr_schedulers:
+  training_lr:
+    class: MultiStepLR
+    milestones: [20, 30, 36]
+    gamma: 0.5
+
+policies:
+  - lr_scheduler:
+      instance_name: training_lr
+    starting_epoch: 0
+    ending_epoch: 40
+    frequency: 1

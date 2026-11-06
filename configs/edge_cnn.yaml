@@ -1,0 +1,41 @@
+# Final proposed Edge model (EdgeECGNet, ~25k parameters, MAX78002-compatible layers).
+# All paths are relative to this file.
+seed: 42
+device: auto            # auto = cuda, then mps, then cpu
+
+paths:
+  processed_dir: ../data/processed     # written by prepare_data.py
+  models_dir: ../models
+  results_dir: ../results
+
+model:
+  arch: edge_cnn        # layer list in src/model.py (6 fused conv layers + 1 linear layer)
+  width_mult: 1.0       # scales the number of channels (rounded to a multiple of 4)
+  dropout: 0.1          # only active during FP32 training
+  num_classes: 4
+  input_length: 360
+
+training:
+  optimizer: adam
+  lr: 0.001
+  weight_decay: 0.0001
+  lr_schedule: cosine           # cosine | step | none
+  batch_size: 128
+  epochs: 60
+  grad_clip: 1.0
+  loss: cross_entropy
+  label_smoothing: 0.0
+  imbalance: class_weights      # class_weights | balanced_sampler | none  (never use both)
+  class_weight_power: 1.0       # 1.0 = total / (4 * count); 0.5 = softer weights
+  augment: true                 # training beats only
+  num_workers: 0
+  early_stopping:
+    patience: 12                # epochs without validation macro-F1 improvement
+    min_epochs: 10
+
+# Quantization-aware training (INT8 emulation, see src/model.py)
+qat:
+  enabled: true
+  epochs: 20
+  lr_factor: 0.1                # QAT learning rate = training.lr * lr_factor
+  patience: 8

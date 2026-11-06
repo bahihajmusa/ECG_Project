@@ -1,0 +1,8 @@
+experiment,overrides,val_macro_f1,best_epoch,parameters_deployed,seconds,selected
+tiny_cnn,"{'model': {'arch': 'tiny_cnn', 'dropout': 0.0}}",0.4583685378860646,2,2900,42.1,False
+edge_w0.5,{'model': {'width_mult': 0.5}},0.4532872062470165,2,6748,67.0,False
+edge_w1.0,{'model': {'width_mult': 1.0}},0.5127318937880284,11,25268,187.9,True
+edge_w1.5,{'model': {'width_mult': 1.5}},0.46575806577089207,5,55564,173.9,False
+edge_w1.0_lr3e-3,{'training': {'lr': 0.003}},0.4833699037498708,4,25268,115.7,False
+edge_w1.0_sampler,{'training': {'imbalance': 'balanced_sampler'}},0.48554754354719404,9,25268,180.2,False
+edge_w1.0_softweights,{'training': {'class_weight_power': 0.5}},0.5140402456511949,11,25268,198.5,False

@@ -1,0 +1,5 @@
+---
+# Quantization-aware training policy: after `start_epoch` epochs, BatchNorm is folded and weights /
+# activations are trained with 8-bit fake quantization.
+start_epoch: 25
+weight_bits: 8

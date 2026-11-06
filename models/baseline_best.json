@@ -1,0 +1,8 @@
+{
+  "best": "random_forest",
+  "validation_macro_f1": 0.41403683121811474,
+  "all": {
+    "logreg": 0.3105982492067423,
+    "random_forest": 0.41403683121811474
+  }
+}

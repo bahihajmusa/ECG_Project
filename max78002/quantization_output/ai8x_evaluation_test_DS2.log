@@ -1,0 +1,70 @@
+Log file for this run: /home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-training/logs/2026.11.04-145651/2026.11.04-145651.log
+The open file limit is 1024. Please raise the limit (see documentation).
+Configuring device: MAX78002, simulate=True.
+No CUDA, ROCm, or MPS hardware acceleration, training will be slow
+=> loading checkpoint /home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-training/../ai8x-synthesis/trained/ecg-qat8-q.pth.tar
+=> Checkpoint contents:
++----------------------+-------------+------------+
+| Key                  | Type        | Value      |
+|----------------------+-------------+------------|
+| arch                 | str         | ai85ecgnet |
+| compression_sched    | dict        |            |
+| epoch                | int         | 35         |
+| extras               | dict        |            |
+| optimizer_state_dict | dict        |            |
+| optimizer_type       | type        | Adam       |
+| state_dict           | OrderedDict |            |
++----------------------+-------------+------------+
+
+=> Checkpoint['extras'] contents:
++-----------------+--------+-------------------+
+| Key             | Type   | Value             |
+|-----------------+--------+-------------------|
+| best_epoch      | int    | 35                |
+| best_mAP        | int    | 0                 |
+| best_top1       | float  | 93.16189362945646 |
+| clipping_method | str    | MAX_BIT_SHIFT     |
+| current_mAP     | int    | 0                 |
+| current_top1    | float  | 93.16189362945646 |
++-----------------+--------+-------------------+
+
+Loaded compression schedule from checkpoint (epoch 35)
+=> loaded 'state_dict' from checkpoint '/home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-training/../ai8x-synthesis/trained/ecg-qat8-q.pth.tar'
+Optimizer Type: <class 'torch.optim.sgd.SGD'>
+Optimizer Args: {'lr': 0.1, 'momentum': 0.9, 'dampening': 0, 'weight_decay': 0.0001, 'nesterov': False, 'maximize': False, 'foreach': None, 'differentiable': False, 'fused': None}
+[ECG_MITBIH] evaluation ("test") set = DS2 (FINAL TEST)
+torch.compile() not available, using "eager" mode
+Dataset sizes:
+	test=49680
+--- test (ckpt) ---------------------
+49680 samples (256 per mini-batch)
+Test: [   10/  195]    Loss 1.530262    Top1 88.320312    
+Test: [   20/  195]    Loss 1.472742    Top1 88.378906    
+Test: [   30/  195]    Loss 1.469269    Top1 88.307292    
+Test: [   40/  195]    Loss 1.580659    Top1 87.929688    
+Test: [   50/  195]    Loss 1.545345    Top1 87.835938    
+Test: [   60/  195]    Loss 1.562180    Top1 87.701823    
+Test: [   70/  195]    Loss 1.580992    Top1 87.622768    
+Test: [   80/  195]    Loss 1.582994    Top1 87.631836    
+Test: [   90/  195]    Loss 1.582733    Top1 87.686632    
+Test: [  100/  195]    Loss 1.591388    Top1 87.667969    
+Test: [  110/  195]    Loss 1.581234    Top1 87.645597    
+Test: [  120/  195]    Loss 1.580114    Top1 87.600911    
+Test: [  130/  195]    Loss 1.573701    Top1 87.617188    
+Test: [  140/  195]    Loss 1.568247    Top1 87.642299    
+Test: [  150/  195]    Loss 1.568404    Top1 87.591146    
+Test: [  160/  195]    Loss 1.572495    Top1 87.639160    
+Test: [  170/  195]    Loss 1.570751    Top1 87.619485    
+Test: [  180/  195]    Loss 1.575424    Top1 87.571615    
+Test: [  190/  195]    Loss 1.558077    Top1 87.569901    
+Test: [  195/  195]    Loss 1.543451    Top1 87.576490    
+==> Top1: 87.576    Loss: 1.543
+
+==> Confusion:
+[[40334  1815   451  1635]
+ [ 1432   360    43     2]
+ [  333    16  2811    60]
+ [  334     5    46     3]]
+
+
+Log file for this run: /home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-training/logs/2026.11.04-145651/2026.11.04-145651.log

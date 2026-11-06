@@ -1,0 +1,55 @@
+Log file for this run: /home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-training/logs/2026.11.04-142704/2026.11.04-142704.log
+The open file limit is 1024. Please raise the limit (see documentation).
+Configuring device: MAX78002, simulate=True.
+No CUDA, ROCm, or MPS hardware acceleration, training will be slow
+=> loading checkpoint /home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-synthesis/trained/ecg-qat8-q.pth.tar
+=> Checkpoint contents:
++----------------------+-------------+------------+
+| Key                  | Type        | Value      |
+|----------------------+-------------+------------|
+| arch                 | str         | ai85ecgnet |
+| compression_sched    | dict        |            |
+| epoch                | int         | 35         |
+| extras               | dict        |            |
+| optimizer_state_dict | dict        |            |
+| optimizer_type       | type        | Adam       |
+| state_dict           | OrderedDict |            |
++----------------------+-------------+------------+
+
+=> Checkpoint['extras'] contents:
++-----------------+--------+-------------------+
+| Key             | Type   | Value             |
+|-----------------+--------+-------------------|
+| best_epoch      | int    | 35                |
+| best_mAP        | int    | 0                 |
+| best_top1       | float  | 93.16189362945646 |
+| clipping_method | str    | MAX_BIT_SHIFT     |
+| current_mAP     | int    | 0                 |
+| current_top1    | float  | 93.16189362945646 |
++-----------------+--------+-------------------+
+
+Loaded compression schedule from checkpoint (epoch 35)
+=> loaded 'state_dict' from checkpoint '/home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-synthesis/trained/ecg-qat8-q.pth.tar'
+Optimizer Type: <class 'torch.optim.sgd.SGD'>
+Optimizer Args: {'lr': 0.1, 'momentum': 0.9, 'dampening': 0, 'weight_decay': 0.0001, 'nesterov': False, 'maximize': False, 'foreach': None, 'differentiable': False, 'fused': None}
+[ECG_MITBIH] evaluation ("test") set = validation records
+torch.compile() not available, using "eager" mode
+Dataset sizes:
+	test=10266
+--- test (ckpt) ---------------------
+10266 samples (256 per mini-batch)
+Test: [   10/   41]    Loss 0.706792    Top1 93.437500    
+Test: [   20/   41]    Loss 0.720603    Top1 93.242188    
+Test: [   30/   41]    Loss 0.712226    Top1 93.307292    
+Test: [   40/   41]    Loss 0.732442    Top1 93.164062    
+Test: [   41/   41]    Loss 0.745691    Top1 93.161894    
+==> Top1: 93.162    Loss: 0.746
+
+==> Confusion:
+[[9083  140  164   56]
+ [  88   64   18    0]
+ [ 178   36  416    8]
+ [   8    0    6    1]]
+
+
+Log file for this run: /home/bahi-hajmusa/LTU_Project/Group_ECG_Project/ai8x-training/logs/2026.11.04-142704/2026.11.04-142704.log

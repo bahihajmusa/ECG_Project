@@ -1,0 +1,24 @@
+# Model-selection experiments (report section 4.4).
+# Every experiment overrides edge_cnn.yaml and is trained as a short FP32 run.
+# Selection rule: highest VALIDATION macro-F1; if several are within `tie_margin`,
+# the one with the fewest deployed parameters wins. The test set DS2 is never used.
+tie_margin: 0.005
+common_overrides:
+  training:
+    epochs: 25
+    early_stopping: {patience: 8, min_epochs: 8}
+experiments:
+  - name: tiny_cnn
+    overrides: {model: {arch: tiny_cnn, dropout: 0.0}}
+  - name: edge_w0.5
+    overrides: {model: {width_mult: 0.5}}
+  - name: edge_w1.0
+    overrides: {model: {width_mult: 1.0}}
+  - name: edge_w1.5
+    overrides: {model: {width_mult: 1.5}}
+  - name: edge_w1.0_lr3e-3
+    overrides: {training: {lr: 0.003}}
+  - name: edge_w1.0_sampler
+    overrides: {training: {imbalance: balanced_sampler}}
+  - name: edge_w1.0_softweights
+    overrides: {training: {class_weight_power: 0.5}}

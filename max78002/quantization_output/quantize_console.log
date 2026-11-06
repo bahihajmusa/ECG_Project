@@ -1,0 +1,19 @@
+Configuring device: MAX78002
+Converting checkpoint file trained/qat_best.pth.tar to trained/ecg-qat8-q.pth.tar
+
+Model keys (state_dict):
+conv1.output_shift, conv1.activation_threshold, conv1.final_scale, conv1.weight_bits, conv1.bias_bits, conv1.quantize_activation, conv1.clamp_activation, conv1.adjust_output_shift, conv1.shift_quantile, conv1.op.weight, conv1.op.bias, conv2.output_shift, conv2.activation_threshold, conv2.final_scale, conv2.weight_bits, conv2.bias_bits, conv2.quantize_activation, conv2.clamp_activation, conv2.adjust_output_shift, conv2.shift_quantile, conv2.op.weight, conv2.op.bias, conv3.output_shift, conv3.activation_threshold, conv3.final_scale, conv3.weight_bits, conv3.bias_bits, conv3.quantize_activation, conv3.clamp_activation, conv3.adjust_output_shift, conv3.shift_quantile, conv3.op.weight, conv3.op.bias, conv4.output_shift, conv4.activation_threshold, conv4.final_scale, conv4.weight_bits, conv4.bias_bits, conv4.quantize_activation, conv4.clamp_activation, conv4.adjust_output_shift, conv4.shift_quantile, conv4.op.weight, conv4.op.bias, conv5.output_shift, conv5.activation_threshold, conv5.final_scale, conv5.weight_bits, conv5.bias_bits, conv5.quantize_activation, conv5.clamp_activation, conv5.adjust_output_shift, conv5.shift_quantile, conv5.op.weight, conv5.op.bias, conv6.output_shift, conv6.activation_threshold, conv6.final_scale, conv6.weight_bits, conv6.bias_bits, conv6.quantize_activation, conv6.clamp_activation, conv6.adjust_output_shift, conv6.shift_quantile, conv6.op.weight, conv6.op.bias, fc.output_shift, fc.activation_threshold, fc.final_scale, fc.weight_bits, fc.bias_bits, fc.quantize_activation, fc.clamp_activation, fc.adjust_output_shift, fc.shift_quantile, fc.op.weight, fc.op.bias
+conv1.op.weight avg_max: 2.815012 max: 9.119819 mean: -0.030897593 factor: [8.] bits: 8
+conv1.op.bias avg_max: 0.078547575 max: 0.9841525 mean: -0.078547575 factor: [8.] bits: 8
+conv2.op.weight avg_max: 0.2687839 max: 0.62239385 mean: -0.011400527 factor: [128.] bits: 8
+conv2.op.bias avg_max: 0.035323925 max: 0.15675075 mean: 0.035323925 factor: [128.] bits: 8
+conv3.op.weight avg_max: 0.18404937 max: 0.42536643 mean: -0.009066502 factor: [256.] bits: 8
+conv3.op.bias avg_max: 0.08345105 max: 0.36887294 mean: 0.08345105 factor: [256.] bits: 8
+conv4.op.weight avg_max: 0.30869535 max: 0.52745956 mean: -0.010719415 factor: [128.] bits: 8
+conv4.op.bias avg_max: 0.030992314 max: 0.430614 mean: 0.030992314 factor: [128.] bits: 8
+conv5.op.weight avg_max: 0.21639118 max: 0.39892262 mean: -0.0067826286 factor: [256.] bits: 8
+conv5.op.bias avg_max: 0.028453572 max: 0.21463488 mean: 0.028453572 factor: [256.] bits: 8
+conv6.op.weight avg_max: 0.54691374 max: 0.81076753 mean: -0.014617316 factor: [128.] bits: 8
+conv6.op.bias avg_max: 0.06670428 max: 0.84793293 mean: 0.06670428 factor: [128.] bits: 8
+fc.op.weight avg_max: 0.41271132 max: 0.48629284 mean: -0.01868723 factor: [256.] bits: 8
+fc.op.bias avg_max: 0.0041151033 max: 0.015101922 mean: -0.0041151033 factor: [256.] bits: 8

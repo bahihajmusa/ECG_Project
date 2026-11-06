@@ -1,0 +1,72 @@
+{
+  "model_file": "ai85net-ecg.py",
+  "model_name": "ai85ecgnet",
+  "dataset": "ECG_MITBIH",
+  "input_shape": [
+    1,
+    360
+  ],
+  "output": 4,
+  "layers": [
+    {
+      "Layer": "conv1",
+      "Input": "1 x 360",
+      "Operation": "Conv1d(k=5, pad=2) + BN(folded) + ReLU",
+      "Output": "16 x 360",
+      "Parameters": 96
+    },
+    {
+      "Layer": "conv2",
+      "Input": "16 x 360",
+      "Operation": "MaxPool1d(2) -> Conv1d(k=5, pad=2) + BN(folded) + ReLU",
+      "Output": "32 x 180",
+      "Parameters": 2592
+    },
+    {
+      "Layer": "conv3",
+      "Input": "32 x 180",
+      "Operation": "MaxPool1d(2) -> Conv1d(k=5, pad=2) + BN(folded) + ReLU",
+      "Output": "32 x 90",
+      "Parameters": 5152
+    },
+    {
+      "Layer": "conv4",
+      "Input": "32 x 90",
+      "Operation": "MaxPool1d(2) -> Conv1d(k=3, pad=1) + BN(folded) + ReLU",
+      "Output": "48 x 45",
+      "Parameters": 4656
+    },
+    {
+      "Layer": "conv5",
+      "Input": "48 x 45",
+      "Operation": "MaxPool1d(2) -> Conv1d(k=3, pad=1) + BN(folded) + ReLU",
+      "Output": "64 x 22",
+      "Parameters": 9280
+    },
+    {
+      "Layer": "conv6",
+      "Input": "64 x 22",
+      "Operation": "MaxPool1d(2) -> Conv1d(k=1, pad=0) + BN(folded) + ReLU",
+      "Output": "32 x 11",
+      "Parameters": 2080
+    },
+    {
+      "Layer": "fc",
+      "Input": "32 x 11 = 352",
+      "Operation": "Flatten -> Linear (32-bit output)",
+      "Output": "4",
+      "Parameters": 1412
+    }
+  ],
+  "parameters_deployed": 25268,
+  "parameters_trainable_with_bn": 25492,
+  "weight_bytes_int8": 25268,
+  "estimated_peak_activation_bytes_int8": 11520,
+  "pre_check": {
+    "ok": true,
+    "problems": [],
+    "parameters_deployed": 25268,
+    "weight_bytes_int8": 25268,
+    "layers": 7
+  }
+}

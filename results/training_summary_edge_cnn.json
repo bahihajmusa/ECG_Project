@@ -1,0 +1,55 @@
+{
+  "name": "edge_cnn",
+  "seed": 42,
+  "device": "cpu",
+  "imbalance": "class_weights",
+  "fp32_best_val_macro_f1": 0.4560125331978609,
+  "fp32_best_epoch": 5,
+  "parameters_trainable": 25492,
+  "parameters_deployed": 25268,
+  "qat_best_val_macro_f1": 0.4550667137506314,
+  "qat_best_epoch": 0,
+  "train_seconds": 519.9,
+  "config": {
+    "seed": 42,
+    "device": "auto",
+    "paths": {
+      "processed_dir": "/home/bahi-hajmusa/LTU_Project/Group_ECG_Project/Group_ECG_Project/data/processed",
+      "models_dir": "/home/bahi-hajmusa/LTU_Project/Group_ECG_Project/Group_ECG_Project/models",
+      "results_dir": "/home/bahi-hajmusa/LTU_Project/Group_ECG_Project/Group_ECG_Project/results"
+    },
+    "model": {
+      "arch": "edge_cnn",
+      "width_mult": 1.0,
+      "dropout": 0.1,
+      "num_classes": 4,
+      "input_length": 360
+    },
+    "training": {
+      "optimizer": "adam",
+      "lr": 0.001,
+      "weight_decay": 0.0,
+      "lr_schedule": "cosine",
+      "batch_size": 128,
+      "epochs": 30,
+      "grad_clip": 1.0,
+      "loss": "cross_entropy",
+      "label_smoothing": 0.0,
+      "imbalance": "class_weights",
+      "class_weight_power": 0.5,
+      "augment": true,
+      "num_workers": 0,
+      "early_stopping": {
+        "patience": 30,
+        "min_epochs": 10
+      },
+      "select_from_epoch": 1
+    },
+    "qat": {
+      "enabled": true,
+      "epochs": 30,
+      "lr_factor": 0.1,
+      "patience": 12
+    }
+  }
+}

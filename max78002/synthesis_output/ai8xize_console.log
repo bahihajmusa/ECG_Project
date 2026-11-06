@@ -1,0 +1,22 @@
+WARNING: Cannot run "yamllint" linter to check networks/ecg_mitbih.yaml
+NOTICE: Defaulting to "no activation" for mlp in layer sequence 6 in YAML configuration.
+Arranging weights... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+Storing weights...   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+Creating network...  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100%
+Configuring device: MAX78002
+Reading networks/ecg_mitbih.yaml to configure network...
+WARNING: Cannot run "yamllint" linter to check networks/ecg_mitbih.yaml
+NOTICE: Defaulting to "no activation" for mlp in layer sequence 6 in YAML configuration.
+Reading trained/ecg-qat8-q.pth.tar to configure network weights...
+Checkpoint for epoch 35, model ai85ecgnet - weight and bias data:
+ InCh OutCh  Weights         Quant Shift  Min  Max    Size Key                                       Bias       Quant  Min  Max Size Key
+    1    16  (16, 5)             8     1  -62   73      80 conv1.op.weight                           (16,)          8   -8    6   16 conv1.op.bias            
+   16    32  (512, 5)            8     1  -80   69    2560 conv2.op.weight                           (32,)          8  -18   20   32 conv2.op.bias            
+   32    32  (1024, 5)           8    -1  -72  109    5120 conv3.op.weight                           (32,)          8  -94   87   32 conv3.op.bias            
+   32    48  (1536, 3)           8    -1  -67   68    4608 conv4.op.weight                           (48,)          8  -55   39   48 conv4.op.bias            
+   48    64  (3072, 3)           8     0 -102   74    9216 conv5.op.weight                           (64,)          8  -48   55   64 conv5.op.bias            
+   64    32  (2048, 1)           8    -1 -104   98    2048 conv6.op.weight                           (32,)          8  -59  109   32 conv6.op.bias            
+  352     4  (1, 4, 352)         8    -2 -124   77    1408 fc.op.weight                              (4,)           8   -4    3    4 fc.op.bias               
+TOTAL: 7 parameter layers, 25,268 parameters, 25,268 bytes
+Configuring data set: ECG_MITBIH.
+ecg_mitbih...

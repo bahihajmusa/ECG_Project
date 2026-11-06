@@ -1,0 +1,4 @@
+2026-11-04T12:59:11 | evaluate.py | clean evaluation of baseline, tiny_cnn_fp32, edge_fp32, edge_int8_ptq, edge_int8_qat
+2026-11-04T13:04:05 | noise_test.py | noise robustness (bw, em, ma at [12, 6, 0] dB)
+2026-11-04T13:04:23 | error_analysis.py | error analysis of edge_int8_qat
+2026-11-04T15:03:45 | ai8x evaluate_ecg.sh | official 8-bit ai8x model on DS2 (once)
