@@ -2,20 +2,18 @@
 title: "Edge-Ready ECG Classification using CRISP-DM"
 authors: "Hajmusa, B., Runsten, N., & Waxell, P."
 course: "Advanced Data Mining, 7.5 cr"
-date: "04/11 2026"
+date: "14/11 2026"
 
 summary: |
-  This report covers the whole project, from the problem (section 1) and the data (sections 2 and 3) to modelling, evaluation and deployment (sections 4 to 6).
-  EdgeECGNet (25,268 parameters, 25 KB in INT8) was evaluated on the 22 DS2 records, which were never used for training or tuning.
-  The model fits the MAX78002 (synthesis passed), loses little macro-F1 from FP32 to INT8 and degrades gradually under noise,
-  but it does not reach the macro-F1 and minority-class targets. The errors of classes S and F are concentrated in a few records
-  and come from missing timing information (no RR interval), not from the network size.
+  This report covers the whole project, from the problem (section 1) and the data (sections 2 and 3) to modelling, evaluation and deployment (sections 4 to 6), followed by a final discussion (section 7) and the limitations (section 8). EdgeECGNet (25,268 parameters, 25 KB in INT8) was evaluated once on the 22 DS2 records, which were never used for training or tuning.
 
-  Two INT8 models are reported, and they must not be mixed up: the PyTorch INT8 emulation is the main, pre-planned model (all noise and error analysis refer to it),
-  and the ai8x 8-bit model is the one that was actually synthesized for the MAX78002. They come from separate training runs. Neither was chosen using DS2.
+  **Main results on DS2.** The INT8 model reaches macro-F1 0.4019 and accuracy 0.8967. It finds 77 % of the V beats, but only 4 % of the S beats and no F beats. Quantization costs little: macro-F1 drops from 0.4145 (FP32) to 0.4019, within our 0.03 target. Under noise the model degrades gradually, from 0.4019 (clean) to 0.3799 at 0 dB, within our 0.05 target; electrode motion is the hardest noise type. The model passed the MAX78002 synthesis and uses 25,040 bytes of weight memory (1.0 %).
 
-  Honest reading of the numbers: a tiny 2,900-parameter CNN reaches a similar or higher macro-F1 than the edge model, so the larger model
-  is justified by the INT8 and deployment analysis, not by accuracy.
+  **What was not achieved.** The macro-F1 target (0.6) and the minority-class targets are not reached. The errors of classes S and F are concentrated in a few records (records 232, 213 and 111 hold 55 % of all errors) and come mainly from missing timing information (no RR interval), not from the network size.
+
+  Two INT8 models are reported, and they must not be mixed up: the PyTorch INT8 emulation is the main, pre-planned model (all noise and error analysis refer to it), and the ai8x 8-bit model (macro-F1 0.4919) is the one that was actually synthesized for the MAX78002. They come from separate training runs. Neither was chosen using DS2.
+
+  Honest reading of the numbers: a tiny 2,900-parameter CNN reaches a higher macro-F1 (0.4970) than the edge model, so the larger model is justified by the INT8 and deployment analysis, not by accuracy. The most important next step is to add RR-interval features.
 
 # Targets of the success criteria (section 1.4). Used both in section 1.4 and in the review 5.6. "partial" = lower limit for "Partially achieved".
 targets:
